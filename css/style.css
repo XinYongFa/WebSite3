@@ -1,0 +1,82 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font: 14px/18px "微軟正黑體", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased; 
+	-webkit-text-size-adjust: none;
+}
+a {
+	transition: color; 
+	transition-duration: 2000ms;
+	-webkit-transition: color; 
+	-webkit-transition-duration: 2000ms;
+	-moz-transition: color; 
+	-moz-transition-duration: 2000ms;
+	-o-transition: color; 
+	-o-transition-duration: 2000ms;
+	text-decoration: none;
+	color: #643c05;
+}
+a:hover {
+	transition: color;
+	transition-duration: 300ms;
+	-webkit-transition: color;
+	-webkit-transition-duration: 300ms;
+	-moz-transition: color;
+	-moz-transition-duration: 300ms;
+	-o-transition: color;
+	-o-transition-duration: 300ms;
+	color: #c83f03;
+}
+/*-----------------頁面初始化------------------------*/
+body,h1,h2,h3,h4,p,ul,li,blockquote,address 
+      {
+	    margin: 0;
+	    padding: 0;
+	    border: none;
+      }
+td  {    
+        vertical-align:top;
+      }
+a,img{
+        text-decoration:none;
+        border:0;
+      }
+a  
+{
+    color:#0077c4;
+}
+
+
+
+/*
+#mainkey{ position:absolute; top:65px; left:378px; z-index:99;width:130px; }
+
+#slides{ height:490px; }
+
+
+
+#menudiv1{ position:absolute; top:290px; left: 30px; z-index:55; }
+#menudiv2{ position:absolute; top:290px; left: 210px; z-index:55; }
+#menudiv3{ position:absolute; top:290px; left: 600px; z-index:55; }
+#menudiv4{ position:absolute; top:290px; left: 830px; z-index:55; }
+
+.LMNAV a:hover #menuMe,
+.LMNAV a #menu1_1,
+.LMNAV a #menu2_1,
+.LMNAV a #menu3_1,
+.LMNAV a #menu4_1{ display:none}
+
+.LMNAV a #menuMe,
+.LMNAV a:hover #menu1_1,
+.LMNAV a:hover #menu2_1,
+.LMNAV a:hover #menu3_1,
+.LMNAV a:hover #menu4_1{display:block}
+
+
+*/

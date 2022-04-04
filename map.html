@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8" />
+    <title>新永發鎖店</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="新永發鎖匙刻印店-台北中山區開鎖、配鎖、裝鎖、刻印(木頭章、連續章、橡皮章)、遙控器(感應扣)拷貝。地址:台北市中山區新生北路二段66-4號 電話:(02)2571-0422" />
+    <meta name="keywords" content="新永發鎖匙刻印店,新永發,台北開鎖" />
+    <meta name="copyright" content="新永發" />
+    <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="Images/linkicon.png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=geometry"></script>
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    <script>
+     var map;
+     var directionsService;
+     var currentPosition; //取得目前的位置
+     var destinationPosition ;  //設定目的地
+
+    $(document).ready(function () {
+
+
+       
+       
+        var mapOptions = {
+            zoom: 15, //預設地圖的比例大小
+            center: new google.maps.LatLng(25.056236,121.527266),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+         directionsService = new google.maps.DirectionsService();
+        //規畫路徑呈現選項
+        var rendererOptions = {
+            suppressMarkers: true,
+        };
+        directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+        directionsDisplay.setMap(map);
+
+        var options = {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        };
+        navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+        var myLatlng = new google.maps.LatLng(25.056236,121.527266); 
+        var color = "red";
+
+        setMarket(color, { "title": "新永發鎖匙刻印店", "addr": "台北市中山區新生北路二段66-4號" }, myLatlng, map);
+        //點選設定終點的按鈕
+        $("#btnDestination").click(function () {
+             calcRoute(currentPosition, destinationPosition);
+        });
+    });// End $(document).ready(function ()
+
+
+
+        function success(position) {   
+            setCurrentLocation(position.coords.latitude, position.coords.longitude);
+        };
+        function error() {
+//            alert("取得經緯失敗");
+        };
+        function setCurrentLocation(lat, lon) {
+            currentPosition = new google.maps.LatLng(lat, lon); //設目前位置的座標  
+            map.setCenter(currentPosition); //以自已位置為地圖中心
+            currentMarker = new google.maps.Marker({
+                position: currentPosition,
+                map: map,
+                title: '目前位置',
+                icon: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png",
+            });  //將目前位置的座標加入到地圖中
+
+            //經過經緯度反查目前座標的住址
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({
+                'latLng': currentPosition
+            }, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    if (results) {
+                        startAddr = results[0].formatted_address;
+                        var contentString = '目前位置:' + results[0].formatted_address;
+                        var infowindow = new google.maps.InfoWindow({
+                            content: contentString
+                        });
+        //點選目前位置座標，有文字方塊顯示目前的地址
+                        google.maps.event.addListener(currentMarker, 'click', function () {
+                            infowindow.open(map, currentMarker);
+                        });
+                    }
+                } else {
+                    alert("Reverse Geocoding failed because: " + status);
+                }
+            });
+        }
+        function setMarket(color, title, myLatlng, map) {
+            var strMakerLink ='http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+          
+            //建立地圖google座標
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                title: title.title,
+                icon: strMakerLink,
+            })
+            //google座標放進地圖
+            marker.setMap(map);
+            google.maps.event.addListener(marker, 'click', function () {
+                var myLatLng = this.position;       
+                destinationPosition = myLatLng;
+                destionAddr = title.addr;
+                $("#markerAddr").text(destionAddr);
+                var meters = google.maps.geometry.spherical.computeDistanceBetween(currentMarker.getPosition(), marker.getPosition());
+                $("#markerDistance").text(parseInt(meters));
+                $("#geolocation_showDialog").click(); //點選座標後，跳出 panel 視窗
+                return false;
+            });
+        }
+        //從起點到終點的導航路徑
+        function calcRoute(startPoint, endPoint) {   
+            var request = {
+                origin: startPoint,   //可輸入住址名稱或Google座標
+                destination: endPoint,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+            directionsService.route(request, function (response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                }
+            });
+        }
+     </script>
+</head>
+<body>
+<div data-role="page" id="navigationPage">
+        <div data-role="header" data-theme="a">
+        <a hert="index.html" data-add-back-btn="false" data-icon="arrow-l" class="ui-btn-left">返回</a>
+        <h1>新永發鎖匙刻印店</h1>
+        </div>
+        <div data-role="content">
+            <div id="map_canvas" style="left:0;top:10%;width:100%;height:90%;position:absolute;"></div>
+            <a href="#geolocation_destination" data-rel="close" id="geolocation_showDialog"> </a>
+        </div>
+        <div data-role="footer"  data-theme="a">
+         
+        </div>
+
+        <div data-role="panel" data-position="left" data-display="overlay" id="geolocation_destination" data-theme="a">
+            <div data-role="header">
+                <center>新永發鎖匙刻印店</center>
+            </div>
+            <div data-role="content">
+                <h2><b>服務電話：</b></h2>
+                    <p><a href="TEL:0225710422">(02)2571-0422</a></p>
+                <h2><b>手機：</b></h2>
+                    <p><a href="TEL:0919997632">0919-997-632</a></p>
+                <h2><b>住址:</b></h2>
+                    <p><span id="markerAddr"></span></p>
+                <h2><b>距離位置</b></h2>
+                    <p><span id="markerDistance"></span>&nbsp;公尺</p>
+
+                <a href="#pageone" id="btnDestination" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">設定目的地</a>               
+            </div>
+        </div>
+    </div>   
+
+
+</body>
+</html>

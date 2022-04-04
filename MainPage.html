@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新永發鎖匙刻印店</title>
+ <link rel="stylesheet" type="text/css" href="css/style.css" />
+ <style type="text/css">
+   body {
+      -webkit-font-smoothing: antialiased;
+      font: normal 15px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #232525;
+	  background-color:#CBEAFF;
+	 
+    }
+
+    #slides {
+      display: none
+    }
+
+    #slides .slidesjs-navigation {
+      margin-top:5px;
+    }
+
+    a.slidesjs-next,
+    a.slidesjs-previous,
+    a.slidesjs-play,
+    a.slidesjs-stop {
+      background-image: url(Images/btns-next-prev.png);
+      background-repeat: no-repeat;
+      display:block;
+      width:12px;
+      height:18px;
+      overflow: hidden;
+      text-indent: -9999px;
+      float: left;
+      margin-right:5px;
+    }
+
+    a.slidesjs-next {
+      margin-right:10px;
+      background-position: -12px 0;
+    }
+
+    a:hover.slidesjs-next {
+      background-position: -12px -18px;
+    }
+
+    a.slidesjs-previous {
+      background-position: 0 0;
+    }
+
+    a:hover.slidesjs-previous {
+      background-position: 0 -18px;
+    }
+
+    a.slidesjs-play {
+      width:15px;
+      background-position: -25px 0;
+    }
+
+    a:hover.slidesjs-play {
+      background-position: -25px -18px;
+    }
+
+    a.slidesjs-stop {
+      width:18px;
+      background-position: -41px 0;
+    }
+
+    a:hover.slidesjs-stop {
+      background-position: -41px -18px;
+    }
+
+    .slidesjs-pagination {
+      margin: 7px 0 0;
+      float: right;
+      list-style: none;
+    }
+
+    .slidesjs-pagination li {
+      float: left;
+      margin: 0 1px;
+    }
+
+    .slidesjs-pagination li a {
+      display: block;
+      width: 13px;
+      height: 0;
+      padding-top: 13px;
+      background-image: url(Images/pagination.png);
+      background-position: 0 0;
+      float: left;
+      overflow: hidden;
+    }
+
+    .slidesjs-pagination li a.active,
+    .slidesjs-pagination li a:hover.active {
+      background-position: 0 -13px
+    }
+
+    .slidesjs-pagination li a:hover {
+      background-position: 0 -26px
+    }
+
+    #slides a:link,
+    #slides a:visited {
+      color: #333
+    }
+
+    #slides a:hover,
+    #slides a:active {
+      color: #9e2020
+    }
+
+    .navbar {
+      overflow: hidden
+    }
+        </style>
+    
+        
+    
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="Scrips/jquery.easing.1.3.js" ></script>
+    <script type="text/javascript" src="Scrips/jQueryRotate.2.1.js" ></script>
+    <script type="text/javascript" src="Scrips/masatool.js" ></script>
+    <script type="text/javascript" src="Scrips/jquery.slides.min.js"></script>
+    <script type="text/javascript">
+     function animation() {
+            this500();
+            menuanimation();
+        }
+       
+     function this500() {
+           
+            $("#mainkey").animate({ top: "+=50px" }, 1000).animate({ top: "-=50px" }, 1000);
+           
+            setTimeout("this500()", 500);
+        }
+	 function menuanimation() {
+        $("#menu1_1").animate({ opacity: ".4" }, 500).animate({ opacity: "1" }, 500);
+        $("#menu2_1").animate({ opacity: ".4" }, 500).animate({ opacity: "1" }, 500);
+        $("#menu3_1").animate({ opacity: ".4" }, 500).animate({ opacity: "1" }, 500);
+        $("#menu4_1").animate({ opacity: ".4" }, 500).animate({ opacity: "1" }, 500);
+        setTimeout("menuanimation()", 800);
+   	    }
+    
+        $(document).ready(function () {
+            setTimeout("animation()", 300);
+ 			
+        });
+		function onload() {
+            iframe_auto_height();
+        }
+    </script>
+</head>
+<body onload="onload();"　>
+      <div id="banner"><img src="Images/banner02.png" alt="" /></div>
+      <div id="mainkey"><img src="Images/LOGO_color.png" alt="" /></div>
+	  <div class="LMNAV">
+      
+       <div id="menudiv1"><a href="#">
+           <img src="Images/menu1_1.png"alt="" id="menu1_1"/>
+           <img src="Images/menu1.png"alt=""  id="menuMe"/>
+       </a> </div>  
+           
+       <div id="menudiv2"><a href="#" >
+           <img src="Images/menu2_1.png"alt="" id="menu2_1"/>
+           <img src="Images/menu2.png"alt=""  id="menuMe"/>
+       </a> </div> 
+       
+       <div id="menudiv3"><a href="#" >
+           <img src="Images/menu3_1.png"alt="" id="menu3_1"/>
+           <img src="Images/menu3.png"alt=""  id="menuMe"/>
+       </a> </div>
+       
+       <div id="menudiv4"><a href="#">
+           <img src="Images/menu4_1.png"alt="" id="menu4_1"/>
+           <img src="Images/menu4.png"alt=""  id="menuMe"/>
+       </a> </div>      
+      </div>   
+      <center>
+            <div class="container">
+            <div id="slides">
+               <img src="Images/img1.png" style="width:1000px;height:450px;"/>
+               <img src="Images/img2.png" style="width:1000px;height:450px;"/>
+               <img src="Images/img3.png" style="width:1000px;height:450px;"/>
+            </div>
+          </div>
+	 </center>
+     <script>
+    $(function() {
+      $('#slides').slidesjs({
+        width: 1000,
+        height:450,
+        play: {
+          active: true,
+          auto: true,
+          interval: 4000,
+          swap: true
+        }
+      });
+	 
+    });
+  </script>
+</body>
+</html>
